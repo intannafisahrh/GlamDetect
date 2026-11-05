@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlamDetect</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h2>Glam<span>Detect</span></h2>
+        <div class="status-badge" id="statusBadge">Status: Siap</div>
+    </header>
+
+    <main class="container">
+        <!-- Kolom Kiri: Webcam & Canvas Overlay -->
+        <section class="video-section">
+            <div class="video-container">
+                <video id="webcam" autoplay playsinline muted></video>
+                <canvas id="overlay"></canvas>
+            </div>
+            <div class="camera-controls">
+                <label for="cameraSelect">Pilih Kamera:</label>
+                <select id="cameraSelect"></select>
+            </div>
+
+            <div class="card routine-card">
+                <h3>Urutan Rutinitas</h3>
+                <ol class="routine" id="routine">
+                    {% for r in routine %}
+                    <li data-key="{{ r.key }}"><span class="num">{{ r.step }}</span>{{ r.nama }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </section>
+
+        <!-- Kolom Kanan: Produk Terdeteksi & Informasi -->
+        <section class="panel-section">
+            <div class="card total-card">
+                <h3>PRODUK TERDETEKSI</h3>
+                <div class="total-amount" id="makeupName">-</div>
+                <p class="detected-count">Terdeteksi: <span id="detectedCount">0</span> produk</p>
+            </div>
+
+            <div class="card list-card">
+                <h3>Informasi Produk</h3>
+                <ul id="detectionList" class="detection-list">
+                    <li class="empty-state">Arahkan produk makeup ke kamera</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
